@@ -1,15 +1,15 @@
-# Build an Agent with LangGraph
+# Multi-Agent Collaboration
 
 ## Overview
-By themselves, language models can't take actions - they just output text. A big use case for LangChain is creating agents. Agents are systems that use an LLM as a reasoning engine to determine which actions to take and what the inputs to those actions should be. The results of those actions can then be fed back into the agent and it determines whether more actions are needed, or whether it is okay to finish.
 
-[LangGraph](https://github.com/langchain-ai/langgraph) 
-is an extension of LangChain specifically aimed at creating highly controllable and customizable agents.
+A single agent can usually perform well using a small set of tools to solve a specific problem. However, even powerful models like GPT-4 may struggle when given many different tools to solve a complex problem.
 
-In the [notebook](agent_langgraph.ipynb) we will build an agent that can interact with a search engine. You will be able to ask this agent questions, watch it call the search tool, and have conversations with it.
+One way to approach complicated tasks is through a _"divide-and-conquer"_ approach. Create a specialized agent for each task and route tasks to the correct _"expert"_.
+
+In this [notebook](multi-agent-collab.ipynb), we will see how two agents, each given different tools, can work together to solve a problem that requires the use of all available tools.
 
 The code in the notebook is adapted from the LangGraph tutorial: 
-[Introduction to LangGraph](https://langchain-ai.github.io/langgraph/tutorials/introduction/).
+[Multi-agent Collaboration](https://langchain-ai.github.io/langgraph/tutorials/multi_agent/multi-agent-collaboration/).
 
 
 ## Setup
@@ -18,7 +18,7 @@ The code in the notebook is adapted from the LangGraph tutorial:
 Clone this repository to your local computer by running:
 
 ```zsh
-git clone https://github.com/TCLee/agent-langgraph
+git clone https://github.com/TCLee/multi-agent-collab
 ```
 
 ### Conda
@@ -27,7 +27,7 @@ git clone https://github.com/TCLee/agent-langgraph
 2. Make sure the current working directory is this cloned project's directory:
 
    ```zsh
-   cd /path/to/agent-langgraph
+   cd /path/to/multi-agent-collab
    ```
    
 3. Create the environment from the 
@@ -37,7 +37,7 @@ git clone https://github.com/TCLee/agent-langgraph
     conda env create -f environment.yml -p ./env
     ```
 
-    This will create a new environment in a subdirectory of the project directory called `env`, (i.e., `agent-langgraph/env`)
+    This will create a new environment in a subdirectory of the project directory called `env`, (i.e., `project-dir/env`)
 
 4. Activate the environment: 
 
@@ -51,14 +51,11 @@ This project makes use of
 to load in the environment variables from a `.env` file.
 
 Create a `.env` file in the root directory of this cloned repository
-(i.e., `agent-langgraph/.env`):
+(i.e., `project-dir/.env`):
 
 ```Dotenv
 # Google Gemini API
 GOOGLE_API_KEY="your-google-secret-key"
-
-# Tavily Search API
-TAVILY_API_KEY="your-tavily-secret-key"
 
 # Optional. Recommended to see what's going on 
 # under the hood of LangGraph and LangChain.
@@ -70,15 +67,11 @@ LANGCHAIN_PROJECT="LangGraph Tutorial"
 Fill it in with your own API keys.
 
 #### Google Gemini
-The LLM that we will use in the notebook is Google's **Gemini 1.5 Flash**, since it offers a free tier for us to play around with.
+The LLM that we will use in the notebook is Google's **Gemini 1.5 Flash**. It is fast and it offers a generous free tier for us to play around with.
 
 To use the Gemini API, you'll need an API key. If you do not already have one, create a key in Google AI Studio.
 
 [Get an API key](https://makersuite.google.com/app/apikey)
-
-
-#### Tavily Search
-[Tavily's Search API](https://tavily.com/) is a search engine built specifically for AI agents (LLMs), delivering real-time, accurate, and factual results at speed.
 
 
 #### (Optional) LangSmith
@@ -94,5 +87,5 @@ jupyter lab
 ```
 
 In Jupyter Lab, open the notebook 
-[`agent_langgraph.ipynb`](agent_langgraph.ipynb) 
+[`multi-agent-collab.ipynb`](multi-agent-collab.ipynb) 
 and follow the instructions there.
