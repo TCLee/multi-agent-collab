@@ -61,7 +61,7 @@ GOOGLE_API_KEY="your-google-secret-key"
 # under the hood of LangGraph and LangChain.
 LANGSMITH_API_KEY="your-langsmith-secret-key"
 LANGCHAIN_TRACING_V2="true"
-LANGCHAIN_PROJECT="LangGraph Tutorial"
+LANGCHAIN_PROJECT="Multi-Agent Collaboration"
 ```
 
 Fill it in with your own API keys.
